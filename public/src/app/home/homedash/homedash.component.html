@@ -1,0 +1,26 @@
+<div class="container">
+<h1>Doctor's Appointments</h1>
+
+<form #searchForm="ngForm" (submit)="search()">
+    <input type="search" name="value" required #value="ngModel" [(ngModel)]="searchfield.value">
+    <input type="submit" value="Search" [disabled]="searchForm.invalid" class="btn btn-default">
+    <button *ngIf="searched" (click)="reset()" class="btn btn-primary">Show All</button>
+</form>
+
+<br><hr><br>
+
+<table class="table table-striped">
+    <tr>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Patient Name</th>
+        <th>Complaint</th>
+    </tr>
+    <tr *ngFor="let appointment of display_appointments">
+        <td>{{ appointment.date | date:"MM/dd/yy" }}</td>
+        <td>{{ appointment.time | date:"h:mm a" }}</td>
+        <td>{{ appointment._username }} <span *ngIf="appointment._userID == _user._id">(You)</span></td>
+        <td>{{ appointment.complain }}<button *ngIf="appointment._userID == _user._id && appointment.date > today"  (click)="delete(appointment._id)" class="btn btn-danger">Cancel</button></td>
+    </tr>
+</table>
+</div>
