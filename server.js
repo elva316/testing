@@ -14,6 +14,6 @@ require('./server/utils/middleware')(app)
 require('./server/utils/routes')(app)
 
 
-app.listen(1337, function () {
-	console.log('Running on the 1337 port!');
+app.listen(8000, function () {
+	console.log('Running on the 8000 port!');
 })
